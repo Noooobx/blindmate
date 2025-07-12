@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import EmailInput from "../ui/EmailInput";
+import AuthButton from "../ui/AuthButton";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -11,17 +13,13 @@ const ForgotPasswordForm = () => {
 
   return (
     <form onSubmit={handleReset} className="space-y-4">
-      <input
-        type="email"
-        placeholder="Email"
-        className="w-full border border-gray-300 rounded px-4 py-2"
+      <EmailInput
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-        Send Reset Link
-      </button>
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />{" "}
+      <AuthButton buttonText="Verify Email" />
     </form>
   );
 };
