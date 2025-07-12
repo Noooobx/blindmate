@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import EmailInput from "../ui/EmailInput";
-import PasswordInput from "../ui/PasswordInput";
 import Divider from "../ui/Divider";
 import GoogleButton from "../ui/GoogleButton";
 import AuthButton from "../ui/AuthButton";
+import InputFeild from "../ui/InputFeild";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -23,13 +22,18 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <EmailInput
+      <InputFeild
+        type="email"
+        placeholder="Email"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
-      <PasswordInput
+
+      <InputFeild
+        type="password"
+        placeholder="Password"
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);

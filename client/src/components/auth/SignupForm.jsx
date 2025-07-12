@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import EmailInput from "../ui/EmailInput";
-import PasswordInput from "../ui/PasswordInput";
 import Divider from "../ui/Divider";
 import GoogleButton from "../ui/GoogleButton";
 import AuthButton from "../ui/AuthButton";
 import InteractionStyleSelect from "../ui/InteractionStyleSelect";
+import InputFeild from "../ui/InputFeild";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -33,13 +32,13 @@ const SignupForm = () => {
     <form onSubmit={handleSignup} className="space-y-6">
       {/* Name or Nickname */}
       <div>
-        <input
+        <InputFeild
           type="text"
           placeholder="Your name or nickname"
-          className="w-full rounded-xl border border-blue-100 bg-blue-50 focus:ring-2 focus:ring-blue-200 focus:outline-none px-4 py-3 text-gray-700 placeholder-gray-400 transition"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
         />
       </div>
 
@@ -49,13 +48,18 @@ const SignupForm = () => {
         onChange={(e) => setInteractionStyle(e.target.value)}
       />
 
-      <EmailInput
+      <InputFeild
+        type="email"
+        placeholder="Email"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
-      <PasswordInput
+
+      <InputFeild
+        type="password"
+        placeholder="Password"
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);
