@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import ForgotPassword from '../pages/ForgotPassword'
+import Support from '../pages/Support'
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,8 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        <Route path="/support" element={<Support />} />
     </Routes>
   )
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Divider from "../ui/Divider";
-import GoogleButton from "../ui/GoogleButton";
-import AuthButton from "../ui/AuthButton";
-import InputFeild from "../ui/InputFeild";
+import Divider from "./Divider";
+import GoogleButton from "./GoogleButton";
+import AuthButton from "./AuthButton";
+import InputFeild from "./InputFeild";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

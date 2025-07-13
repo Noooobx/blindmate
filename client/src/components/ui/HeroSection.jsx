@@ -1,9 +1,9 @@
 import React from "react";
-import { heroText } from "../constants/heroContent";
+import { heroText } from "../../constants/heroContent";
 import ActionButtons from "./ActionButtons";
 
 const HeroSection = () => {
-    const {heading,description} = heroText;
+  const { heading, description } = heroText;
   return (
     <div className="relative z-10 w-full max-w-7xl px-4 grid grid-cols-1 md:grid-cols-2 items-start gap-10">
       {/* Left - Text */}
@@ -15,9 +15,8 @@ const HeroSection = () => {
           {description}
         </p>
       </div>
-    
-    <ActionButtons />
-      
+
+      <ActionButtons />
     </div>
   );
 };

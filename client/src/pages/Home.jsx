@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import GhostBackground from "../components/GhostBackground";
-import HeroSection from "../components/HeroSection";
 import testimonials from "../constants/testimonials";
-import TestimonialRotator from "../components/TestimonialRotator";
+import TestimonialRotator from "../components/ui/TestimonialRotator"
+import HeroSection from "../components/ui/HeroSection";
+import GhostBackground from "../components/ui/GhostBackground"
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,6 +19,7 @@ const Home = () => {
       <GhostBackground />
       {/* Main Content */}
       <HeroSection />
+      
       {/* Centered rotating testimonial */}
       <TestimonialRotator quote={testimonials[currentIndex]} />
     </section>

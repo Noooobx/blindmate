@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import actionButtons from "../constants/actionButtons";
+import actionButtons from "../../constants/actionButtons";
 
 const ActionButtons = () => {
   return (

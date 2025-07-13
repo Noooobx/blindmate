@@ -1,5 +1,5 @@
 import React from 'react';
-import ghostAnimation from "../assets/Ghost.json";
+import ghostAnimation from "../../assets/Ghost.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 const GhostBackground = () => {

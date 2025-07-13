@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X, UserCircle } from "lucide-react";
+import { NAV_LINKS } from "../../constants/navigation";
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const links = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact Us" },
-  ];
+  
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
@@ -20,20 +18,27 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex space-x-6 text-blue-600 font-medium">
-          {links.map(({ to, label }) => (
-            <li key={label}>
-              <Link
-                to={to}
-                className="hover:text-blue-800 transition-colors duration-200"
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex items-center space-x-6 text-blue-600 font-medium">
+          <ul className="flex space-x-6">
+            {NAV_LINKS.map(({ to, label }) => (
+              <li key={label}>
+                <Link
+                  to={to}
+                  className="hover:text-blue-800 transition-colors duration-200"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        {/* Hamburger */}
+          {/* Profile Icon */}
+          <Link to="/profile" className="hover:text-blue-800">
+            <UserCircle size={28} />
+          </Link>
+        </div>
+
+        {/* Hamburger Icon */}
         <button
           className="md:hidden text-blue-700"
           onClick={() => setOpen(!open)}
@@ -45,7 +50,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {open && (
         <ul className="md:hidden bg-white border-t border-blue-100 px-4 pb-4 space-y-2 text-blue-700 font-medium">
-          {links.map(({ to, label }) => (
+          {NAV_LINKS.map(({ to, label }) => (
             <li key={label}>
               <Link
                 to={to}
@@ -56,6 +61,16 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              to="/profile"
+              onClick={() => setOpen(false)}
+              className="block py-2 hover:text-blue-800 flex items-center gap-2"
+            >
+              <UserCircle size={20} />
+              Profile
+            </Link>
+          </li>
         </ul>
       )}
     </nav>

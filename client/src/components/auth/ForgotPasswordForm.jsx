@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import EmailInput from "../ui/EmailInput";
-import AuthButton from "../ui/AuthButton";
+import AuthButton from "./AuthButton";
+import InputFeild from "./InputFeild";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -13,8 +13,9 @@ const ForgotPasswordForm = () => {
 
   return (
     <form onSubmit={handleReset} className="space-y-4">
-      <EmailInput
+      <InputFeild
         value={email}
+        placeholder="Please enter your Email."
         onChange={(e) => {
           setEmail(e.target.value);
         }}
