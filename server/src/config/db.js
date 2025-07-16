@@ -14,7 +14,7 @@ export const connectDB = async () => {
     const conn = await mongoose.connect(mongoURI);
 
     // Log the host on successful connection
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     // Log connection error and exit to prevent from running without DB
     console.error("❌ MongoDB connection failed:", error.message);
