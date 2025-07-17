@@ -4,6 +4,7 @@ import Divider from "./Divider";
 import GoogleButton from "./GoogleButton";
 import AuthButton from "./AuthButton";
 import InputFeild from "./InputFeild";
+import { handleGoogleAuth } from "../../services/authService";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -12,14 +13,9 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password });
-    // Call login API here
   };
 
-  const handleGoogleLogin = () => {
-    console.log("Google Sign-In");
-    // Trigger your Google Auth logic here
-  };
-
+  
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <InputFeild
@@ -52,7 +48,7 @@ const LoginForm = () => {
       {/* Divider */}
       <Divider />
       {/* Google Sign-In Button */}
-      <GoogleButton handleGoogleLogin={handleGoogleLogin} />
+      <GoogleButton handleGoogleLogin={handleGoogleAuth} />
 
       <p className="text-center text-sm text-gray-600">
         Don’t have an account?{" "}

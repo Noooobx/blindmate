@@ -5,6 +5,8 @@ import GoogleButton from "./GoogleButton";
 import AuthButton from "./AuthButton";
 import InteractionStyleSelect from "./InteractionStyleSelect";
 import InputFeild from "./InputFeild";
+import { handleGoogleAuth } from "../../services/authService";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -20,13 +22,9 @@ const SignupForm = () => {
       email,
       password,
     });
-    // Call signup API here
   };
 
-  const handleGoogleSignup = () => {
-    console.log("Google Sign-Up");
-    // Trigger your Google Signup logic here
-  };
+  
 
   return (
     <form onSubmit={handleSignup} className="space-y-6">
@@ -36,9 +34,7 @@ const SignupForm = () => {
           type="text"
           placeholder="Your name or nickname"
           value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
 
@@ -52,19 +48,16 @@ const SignupForm = () => {
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <InputFeild
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        onChange={(e) => setPassword(e.target.value)}
       />
+
       {/* Submit Button */}
       <AuthButton buttonText="Sign Up" />
 
@@ -72,7 +65,7 @@ const SignupForm = () => {
       <Divider />
 
       {/* Google Sign-Up Button */}
-      <GoogleButton handleGoogleLogin={handleGoogleSignup} />
+      <GoogleButton handleGoogleLogin={handleGoogleAuth} />
 
       {/* Redirect to login */}
       <p className="text-center text-sm text-gray-600">

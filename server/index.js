@@ -1,47 +1,66 @@
 // Import core modules and dependencies
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+import session from "express-session";
+import passport from "passport";
 
 // Import custom modules
 import userRouter from "./src/interfaces/routes/userRoutes.js";
+import authRouter from "./src/interfaces/routes/authRoutes.js"; 
 import { connectDB } from "./src/config/db.js";
+import "./src/config/passport.js"; 
 
-// Load environment variables from .env file
+// Load environment variables
 dotenv.config();
 
 // Initialize Express app
 const app = express();
 
-// Middleware to parse incoming JSON requests
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "*",
+    credentials: true,
+  })
+);
+
+app.use(
+  session({
+    secret: "Nandu@1029",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Parse JSON bodies
 app.use(express.json());
 
-// Define the port to run the server
-const PORT = process.env.PORT || 5000;
-
-// Mount user-related API routes under /api/users
+// Routes
 app.use("/api/users", userRouter);
+app.use("/auth", authRouter);
 
-// Health check endpoint for monitoring or CI/CD checks
+// Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "🟢 Server is healthy" });
 });
 
-// Async function to initialize the server and database connection
+// Initialize server
+const PORT = process.env.PORT || 3003;
 const init = async () => {
   try {
-    // Establish MongoDB connection before starting the server
     await connectDB();
-
-    // Start listening on the specified port
     app.listen(PORT, () =>
       console.log(`Server running at http://localhost:${PORT}`)
     );
   } catch (error) {
-    // Log errors and exit process if server fails to start
     console.error("Failed to start server:", error.message);
     process.exit(1);
   }
 };
 
-// Initialize the application
 init();
