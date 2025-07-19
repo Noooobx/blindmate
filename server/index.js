@@ -10,6 +10,7 @@ import userRouter from "./src/interfaces/routes/userRoutes.js";
 import authRouter from "./src/interfaces/routes/authRoutes.js"; 
 import { connectDB } from "./src/config/db.js";
 import "./src/config/passport.js"; 
+import postRouter from "./src/interfaces/routes/PostRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -42,6 +43,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", userRouter);
+app.use("/api/posts", postRouter);
 app.use("/auth", authRouter);
 
 // Health check
