@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, UserCircle } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, UserCircle, LogOut } from "lucide-react";
 import { NAV_LINKS } from "../../constants/navigation";
-
+import axios from "axios";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
-  
+  const handleLogout = async () => {
+    try {
+      const result = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
+      console.log(result)
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
@@ -18,7 +28,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-6 text-blue-600 font-medium">
+        <div className="hidden md:flex items-center space-x-6 text-blue-600 font-medium relative">
           <ul className="flex space-x-6">
             {NAV_LINKS.map(({ to, label }) => (
               <li key={label}>
@@ -32,10 +42,27 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Profile Icon */}
-          <Link to="/profile" className="hover:text-blue-800">
-            <UserCircle size={28} />
-          </Link>
+          {/* Profile Icon + Logout Popup */}
+          <div className="relative">
+            <button
+              className="hover:text-blue-800"
+              onClick={() => setShowLogout(!showLogout)}
+            >
+              <UserCircle size={28} />
+            </button>
+
+            {showLogout && (
+              <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg border rounded-md z-50">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2 px-4 py-2 hover:bg-red-50 text-red-600 font-semibold"
+                >
+                  <LogOut size={18} />
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Hamburger Icon */}
@@ -62,14 +89,13 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-            <Link
-              to="/profile"
-              onClick={() => setOpen(false)}
-              className="block py-2 hover:text-blue-800 flex items-center gap-2"
+            <button
+              onClick={handleLogout}
+              className="block w-full text-left py-2 hover:text-blue-800 flex items-center gap-2"
             >
-              <UserCircle size={20} />
-              Profile
-            </Link>
+              <LogOut size={20} />
+              Logout
+            </button>
           </li>
         </ul>
       )}

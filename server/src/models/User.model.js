@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -10,13 +10,15 @@ const userSchema = new mongoose.schema(
     },
     password: {
       type: String,
-      required: true,
+      required: function(){
+        return !this.googleId;
+      },
     },
     displayName: {
       type: String,
       required: true,
     },
-    googleId: {
+    googleId: { 
       type: String,
       default: null,
     },

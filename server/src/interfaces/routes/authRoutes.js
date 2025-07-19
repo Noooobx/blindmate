@@ -1,11 +1,18 @@
 // src/interfaces/routes/authRoutes.js
 import express from "express";
 import passport from "passport";
+import { authController } from "../controllers/authController.js";
 
 const router = express.Router();
 
 // Initiate Google OAuth
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    prompt: "select_account",
+  })
+);
 
 // Google OAuth Callback
 router.get(
@@ -13,17 +20,16 @@ router.get(
   passport.authenticate("google", {
     failureRedirect: "http://localhost:5173/login",
   }),
-  (req, res) => {
-    console.log("Session data:", req.session);
-    res.redirect("http://localhost:5173/");
-  }
+  authController.handleGoogleCallback
 );
-
 
 // Logout
 router.get("/logout", (req, res) => {
   req.logout(() => {
-    res.redirect("http://localhost:5173");
+    req.session.destroy((err) => {
+      res.clearCookie("connect.sid", { path: "/" });
+      res.send("Success");
+    });
   });
 });
 
