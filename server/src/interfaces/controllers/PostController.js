@@ -34,3 +34,15 @@ export const createPost = async (req, res) => {
     res.status(500).json({ error: "Failed to create post" });
   }
 };
+
+export const deletePost = async (req, res) => {
+  const { postId } = req.params;
+  //const userId = req.user._id; use it when testing on frontend
+
+  try {
+    await PostRepository.deletePost({ postId });
+    return res.status(200).json({ message: "Post deleted successfully" });
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+};
