@@ -1,5 +1,4 @@
 import { PostModel } from "../../models/Post.model.js";
-import mongoose from "mongoose";
 
 const addPost = async ({
   content,
@@ -26,7 +25,6 @@ export const deletePost = async ({ postId }) => {
     throw error;
   }
 
-
   if (post.isAnonymous) {
 
     const error = new Error("Cannot delete anonymous post");
@@ -42,7 +40,29 @@ export const deletePost = async ({ postId }) => {
   await PostModel.findByIdAndDelete(postId);
 };
 
+
+export const findAllPosts = async () => {
+  return await PostModel.find().sort({ createdAt: -1 });
+};
+
+export const findPostById = async (id) => {
+  return await PostModel.findById(id);
+};
+
+export const findPostsByUser = async (userId) => {
+  return await PostModel.find({ createdBy: userId }).sort({ createdAt: -1 });
+};
+
+export const findPostsByTags = async (tagList) => {
+  return await PostModel.find({ tags: { $in: tagList } }).sort({ createdAt: -1 });
+};
+
+
 export const PostRepository = {
   addPost,
   deletePost,
+  findAllPosts,
+  findPostById,
+  findPostsByUser,
+  findPostsByTags
 };
