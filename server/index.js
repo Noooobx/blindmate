@@ -7,9 +7,9 @@ import passport from "passport";
 
 // Import custom modules
 import userRouter from "./src/interfaces/routes/userRoutes.js";
-import authRouter from "./src/interfaces/routes/authRoutes.js"; 
+import authRouter from "./src/interfaces/routes/authRoutes.js";
 import { connectDB } from "./src/config/db.js";
-import "./src/config/passport.js"; 
+import "./src/config/passport.js";
 import postRouter from "./src/interfaces/routes/PostRoutes.js";
 
 // Load environment variables
@@ -18,9 +18,14 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://blindmate-bnef.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     methods: "*",
     credentials: true,
   })
@@ -33,7 +38,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
