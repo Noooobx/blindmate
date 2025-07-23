@@ -18,10 +18,19 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-     failureRedirect: "https://blindmate-bnef.vercel.app/login",
+    failureRedirect: "https://blindmate-bnef.vercel.app/login",
   }),
   authController.handleGoogleCallback
 );
+
+// Get current logged-in user
+router.get("/me", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.status(401).json({ error: "Not authenticated" });
+  }
+});
 
 // Logout
 router.get("/logout", (req, res) => {

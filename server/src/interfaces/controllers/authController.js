@@ -6,7 +6,7 @@ export const authController = {
     try {
       const user = await handleGoogleLogin(googleUser);
       //res.json({"message":"suuccess"});
-      res.redirect(`https://blindmate-bnef.vercel.app`);
+      res.redirect(`https://blindmate-bnef.vercel.app/auth/success`);
     } catch (err) {
       console.log(err);
       res.status(500).json({ error: "Login failed" });
