@@ -18,7 +18,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "blindmate-bnef.vercel.app/login",
+     failureRedirect: "https://blindmate-bnef.vercel.app/login",
   }),
   authController.handleGoogleCallback
 );
