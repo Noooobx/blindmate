@@ -2,7 +2,9 @@ import { handleGoogleLogin } from "../../use-cases/auth/googleAuth.js";
 
 export const authController = {
   handleGoogleCallback: async (req, res) => {
+    console.log("inside this");
     const googleUser = req?.session?.passport?.user;
+    console.log(googleUser);
     try {
       const user = await handleGoogleLogin(googleUser);
       console.log(user);
