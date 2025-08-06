@@ -26,7 +26,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -38,13 +38,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,       // required for HTTPS
-      sameSite: "none",   // required for cross-origin cookies
+      secure: true, // required for HTTPS
+      sameSite: "none", // required for cross-origin cookies
       maxAge: 1000 * 60 * 60 * 24, // optional: 1 day
     },
   })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
