@@ -5,6 +5,7 @@ export const authController = {
     const googleUser = req?.session?.passport?.user;
     try {
       const user = await handleGoogleLogin(googleUser);
+      console.log(user);
       //res.json({"message":"suuccess"});
       res.redirect(`https://blindmate-bnef.vercel.app/auth/success`);
     } catch (err) {
