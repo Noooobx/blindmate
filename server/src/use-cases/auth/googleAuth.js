@@ -5,12 +5,10 @@ export const handleGoogleLogin = async (googleUser) => {
   let user = await userRepository.findByGoogleId(googleUser.id);
 
   if (user) {
-    console.log(user);
     return user; //Existing user → LOGIN
   } else {
     // 2. Extract needed info from Google profile
     const { displayName, id } = googleUser;
-    console.log(displayName)
     const userEmail = googleUser?.emails[0]?.value;
 
     // 3. Create new user in DB → SIGNUP

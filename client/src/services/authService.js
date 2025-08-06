@@ -5,6 +5,6 @@ export const handleGoogleAuth = () => {
       "VITE_BACKEND_URL is not defined in your environment variables"
     );
   }
-  window.location.href = "https://blindmate.onrender.com/auth/google";
+  window.location.href = `${BACKEND_URL}/auth/google`;
 };
  
