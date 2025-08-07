@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import AuthButton from "../auth/AuthButton";
 import InputFeild from "../auth/InputFeild";
+import axios from "axios";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CreateNewPost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Your post creation logic here
+
+    try {
+      await axios.post(`${BACKEND_URL}/api/posts/create`, {
+        title: title.trim(),
+        content: description.trim(),
+      });
+    } catch (error) {
+      console.error(
+        "Error creating post:",
+        error.response?.data || error.message
+      );
+      alert("Failed to create post. Please try again.");
+    }
   };
 
   return (

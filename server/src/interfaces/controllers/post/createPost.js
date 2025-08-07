@@ -8,6 +8,7 @@ import { PostRepository } from "../../../infrastructure/database/PostRepository.
 export const createPost = async (req, res) => {
   try {
     const {
+      title = "",
       content = "",
       tags = [],
       isAnonymous = false,
@@ -20,6 +21,7 @@ export const createPost = async (req, res) => {
 
     // If using authentication, `createdBy` can come from req.user.id
     const newPost = await PostRepository.addPost({
+      title,
       content,
       tags,
       isAnonymous,

@@ -1,12 +1,14 @@
 import { PostModel } from "../../models/Post.model.js";
 
 const addPost = async ({
+  title,
   content,
   tags = [],
   isAnonymous = false,
   createdBy,
 }) => {
   const post = new PostModel({
+    title,
     content: content.trim(),
     tags,
     isAnonymous,

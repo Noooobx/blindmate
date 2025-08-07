@@ -23,6 +23,7 @@ const allowedOrigins = [
   "https://blindmate-bnef.vercel.app",
 ];
 
+// CORS configuration.
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -36,8 +37,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-app.set("trust proxy", 1); // if hosted on Render, AWS, etc.
 
+// Since hosted on Render.
+app.set("trust proxy", 1); 
+
+// session configuration.
 app.use(
   session({
     secret: "Nandu@1029",

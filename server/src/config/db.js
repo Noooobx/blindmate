@@ -5,7 +5,7 @@ export const connectDB = async () => {
 
   // Ensure the connection string is present
   if (!mongoURI) {
-    console.error("❌ MONGO_URI not found in environment variables.");
+    console.error("MONGO_URI not found in environment variables.");
     process.exit(1);
   }
 
@@ -17,7 +17,7 @@ export const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     // Log connection error and exit to prevent from running without DB
-    console.error("❌ MongoDB connection failed:", error.message);
+    console.error("MongoDB connection failed:", error.message);
     process.exit(1);
   }
 };
