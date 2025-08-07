@@ -43,6 +43,7 @@ app.use(
     secret: "Nandu@1029",
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
       secure: true, // required for HTTPS
       sameSite: "none", // required for cross-origin cookies
