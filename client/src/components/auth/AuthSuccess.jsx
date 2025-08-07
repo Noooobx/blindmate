@@ -15,7 +15,7 @@ const AuthSuccess = () => {
       .then((data) => {
         console.log("Logged-in user", data);
         // Optionally store user data in context/local storage here
-        navigate("/dashboard"); // or home page
+        navigate("/"); // or home page
       })
       .catch(() => {
         navigate("/login"); // or show error
