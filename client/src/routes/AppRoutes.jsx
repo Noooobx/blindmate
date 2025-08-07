@@ -7,6 +7,7 @@ import ForgotPassword from '../pages/ForgotPassword'
 import Support from '../pages/Support'
 import CreatePost from '../pages/CreatePost'
 import ViewPosts from '../pages/ViewPosts'
+import AuthSuccess from '../components/auth/AuthSuccess'
 
 const AppRoutes = () => {
   return (
@@ -15,7 +16,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-         <Route path="/auth/success" element={<ForgotPassword />} />
+         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/confessions" element={<ViewPosts />} />
         <Route path="//write" element={<CreatePost />} />
         <Route path="/support" element={<Support />} />
